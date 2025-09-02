@@ -1,0 +1,194 @@
+import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+/* 1. IMPOSTA LA DIMENSIONE DI BASE PER TUTTA LA PAGINA IN MODO FORZATO */
+/* Usiamo !important per garantire che questa regola sovrascriva gli stili predefiniti di Streamlit sul server. */
+/* Ho aumentato leggermente a 150% per garantire un aspetto più grande e leggibile come nella tua versione locale. */
+ html, body {
+    font-size: 100% !important;
+}
+
+
+/* Imposta il font per tutta l'applicazione */
+html, body, [class*="st-"], [class*="css-"] {
+    font-family: 'Source Sans 3', sans-serif !important;
+}
+
+/* Forza la dimensione di base - più specifico */
+html {
+    font-size: 24px !important; /* 150% di 16px = 24px */
+}
+
+body {
+    font-size: 24px !important;
+}
+
+/* Assicurati che Streamlit non sovrascriva */
+.stApp, .stApp > div, .main {
+    font-size: 24px !important;
+}
+
+
+
+/* 2. FORZA TUTTI I TESTI COMUNI A USARE LA NUOVA DIMENSIONE DI BASE */
+/* Usiamo 1rem che ora corrisponde alla nuova base (150%) */
+p, [data-testid="stMarkdownContainer"], [data-testid="stCaption"], .st-emotion-cache-1dj0hjr {
+    font-size: 1rem !important;
+    line-height: 1.6 ;
+}
+
+
+/* 3. IMPOSTA DIMENSIONI SPECIFICHE PER I TITOLI, RELATIVE ALLA NUOVA BASE */
+h1 { font-size: 2.2rem !important; }
+h2 { font-size: 1.8rem !important; }
+h3 { font-size: 1.5rem !important; }
+
+/* Colore bianco per i caratteri nei messaggi della chat */
+[data-testid="stChatMessage"] p {
+    color: --text-color !important;
+}
+
+/* Contenitore principale per la chat: centrato e con larghezza massima */
+.chat-container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    margin-top: -1.5rem;
+    padding-bottom: 6rem; /* Aggiunge spazio in fondo per evitare che l'input si sovrapponga */
+}
+
+/* Stile per l'icona personalizzata nell'avatar */
+.custom-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Ottimizzazione per smartphone */
+@media (max-width: 640px) {
+    .chat-container {
+        padding: 0 0.5rem;
+    }
+}
+
+/* === CSS PER NASCONDERE ELEMENTI DELL'INTERFACCIA STREAMLIT === */
+/* Nasconde il pulsante Deploy, l'header e il footer di Streamlit per un'interfaccia più pulita */
+.stAppDeployButton,
+header[data-testid="stHeader"],
+.stMainMenu,
+.stToolbar {
+    display: none;
+}
+
+.stAppViewContainer > .main .block-container {
+    padding-top: 2rem;
+}
+
+/* === STILI PER I PULSANTI DELL'APP === */
+/* Stili generali per i pulsanti per renderli grandi e cliccabili */
+.stButton button {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100%;
+    padding: 14px 24px; /* Aumentato il padding per un pulsante più alto */
+    border-radius: 10px; /* Bordi più arrotondati */
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    color: #333333;
+    font-weight: 600;
+    font-size: 1.1rem; /* Dimensione del font leggermente aumentata */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 6px 0;
+}
+
+.stButton button:hover {
+    background-color: #f0f0f0;
+    border-color: #1f77b4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Stili per i pulsanti primari */
+.stButton button[kind="primary"] {
+    background-color: #1f77b4 !important;
+    color: white !important;
+    border-color: #1f77b4 !important;
+}
+
+.stButton button[kind="primary"]:hover {
+    background-color: #1565c0 !important;
+    border-color: #1565c0 !important;
+}
+
+/* === STILI PER LA SCHERMATA DI BENVENUTO === */
+.welcome-screen {
+    text-align: center;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+.welcome-screen h1 {
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.welcome-screen h3 {
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 1.5rem;
+}
+
+/* Assicura che i pulsanti nella schermata di benvenuto siano visibili e stilizzati */
+.welcome-screen .stButton button {
+    background-color: rgba(255,255,255,0.95) !important;
+    color: #2c3e50 !important;
+    border: none !important;
+    font-weight: bold;
+}
+
+.welcome-screen .stButton button:hover {
+    background-color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Progress bar personalizzata */
+.custom-progress {
+    background-color: #e9ecef;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.custom-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #28a745, #20c997);
+    transition: width 0.3s ease;
+}
+
+/* Textbox per chiave API - compatta */
+.stTextInput input {
+    height: 3rem !important;        /* ~72px */
+    font-size: 1.2rem !important;   /* ~29px */
+    padding: 0.75rem !important;    /* ~18px */
+}
+
+/* Textarea per chat - più spaziosa */
+[data-testid="stChatInput"] textarea {
+    height: 5rem !important;        /* ~120px */
+    min-height: 4rem !important;    /* ~72px */
+    max-height: 4rem !important;    /* ~192px */
+    font-size: 1.0rem !important;   /* ~31px */
+    padding: 1rem !important;       /* ~24px */
+}
+
+/* Stile per il codice */
+pre, code, pre code {
+    font-size: 1rem !important; /* Rendere il font leggermente più grande del testo normale */
+    line-height: 1.5;
+    word-wrap: normal;
